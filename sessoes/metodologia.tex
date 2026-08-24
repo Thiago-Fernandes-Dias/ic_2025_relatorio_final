@@ -61,7 +61,7 @@ Esta seção descreve algumas métricas usadas na literatura que serão usadas p
 
 \subsection{Algoritmos}\label{subsec:algoritmos}
 
-Para os experimentos iniciais foram feitas buscas por repositórios com código-fonte disponíveis publicamente ou modelos pré-treinados que poderiam ter sido disponibilizados pelos autores dos artigos lidos na revisão bibliográfica. Até o momento foram feitos experimentos com o modelo {DeepPrint} implementado por~\citeonline{Rohwedder2023}.
+Para os experimentos iniciais foram feitas buscas por repositórios com código-fonte disponíveis publicamente ou modelos pré-treinados que poderiam ter sido disponibilizados pelos autores dos artigos lidos na revisão bibliográfica. Foram feitos experimentos com o modelo {DeepPrint} implementado por~\citeonline{Rohwedder2023} e com o FLARE, implementado pelos próprios autores.
 
 
 \subsubsection{Arquitetura do~\textit{DeepPrint}}\label{subsubsec:deepprint-arch}
@@ -80,6 +80,17 @@ Após a imagem de entrada passar por todas as camadas convolucionais, ela passa 
     \caption{Arquitetura da rede neural \textit{DeepPrint}}
     \label{fig:deepprint-arch}
 \end{figure}
+
+\subsubsection{Arquitetura do FLARE}\label{subsubsec:flare-arch}
+
+O FLARE é um framework de identificação e verificação de impressões digitais baseado em uma rede neural profunda que foi treinada para extrair uma representação na forma de um tensor tridimensional após um pré-processamento que envolve alinhamento, realce e segmentação, também realizados por redes neurais profundas treinadas de forma independente.
+
+Inicialmente a imagem passa por uma etapa de alinhamento que utiliza duas técnicas complementares, uma baseada em regressão~\cite{fingerprint_pose_via_regression} e outra baseada em votos~\cite{fingerprint_pose_via_dense_voting}. A primeira faz uma estimativa da pose da digital com base no seu contorno da imagem enquanto a segunda infere com base em predições locais baseadas em representações densas das cristas.~\citeonline{flare} argumentam que o emprego de técnicas que aliam atributos globais e locais das digitais garante um alinhamento mais preciso das digitais.
+
+Após o alinhamento a imagem é realçada por dois modelos diferentes, o~\textit{UNetEnh} e o~\textit{PriorEnh}. A~\textit{UNetEnh} e uma rede neural convolucional baseada na arquitetura U-Net~\cite{unet} para segmentação e remoção de ruídos. A rede PriorEnh, por sua vez, desempenha o papel crítico de reconstruir parcialmente a estrutura das cristas em áreas severamente danificadas ou apagadas, utilizando para isso um conhecimento prévio sobre a geometria padrão de impressões digitais de boa qualidade.
+
+Para a extração de características,~\citeonline{flare} desenvolveram a Rede de Representação Densa de Tamanho Fixo (\textit{Fixed-length Dense Representation Network}, FDRN). A representação extraída por essa rede, diferente do~\textit{DeepPrint}, é uma representação tridimensional que codifica de forma mais natural a segmentação das impressões digitais, assim como as suas minúcias. Ela é baseada na arquitetura da rede ResNet-34~\cite{resnet-34}, com a primeira camada de Max Pooling removida para preservação de detalhes mais finos impressões digitais. De forma semelhante ao que foi proposto em~\cite{deep_print}, a rede é dividida em dois ramos para aprendizado multi-tarefa~\cite{multitask-learning}: a primeira sub-rede extrai um mapa de minúcias ao mesmo tempo que aprende a gerar uma representação de tamanho fixo que codifica informações sobre as minúcias; a segunda sub-rede extrai um mapa de segmentação que separa a impressão digital do fundo da imagem enquanto aprende a gerar uma representação de tamanho fixo com base nos padrões dos cumes da digital. A representação final é obtida ao concatenar os resultados de ambas as sub-redes
+
 
 
 \subsection{Experimentos}\label{subsec:experimentos}
