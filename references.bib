@@ -444,4 +444,44 @@
   month     = Jun
 }
 
+@inproceedings{vq-vae,
+  author    = {van den Oord, Aaron and Vinyals, Oriol and Kavukcuoglu, Koray},
+  title     = {Neural discrete representation learning},
+  year      = {2017},
+  isbn      = {9781510860964},
+  publisher = {Curran Associates Inc.},
+  address   = {Red Hook, NY, USA},
+  abstract  = {Learning useful representations without supervision remains a key challenge in machine learning. In this paper, we propose a simple yet powerful generative model that learns such discrete representations. Our model, the Vector Quantised-Variational AutoEncoder (VQ-VAE), differs from VAEs in two key ways: the encoder network outputs discrete, rather than continuous, codes; and the prior is learnt rather than static. In order to learn a discrete latent representation, we incorporate ideas from vector quantisation (VQ). Using the VQ method allows the model to circumvent issues of "posterior collapse" -ߞ where the latents are ignored when they are paired with a powerful autoregressive decoder -ߞ typically observed in the VAE framework. Pairing these representations with an autoregressive prior, the model can generate high quality images, videos, and speech as well as doing high quality speaker conversion and unsupervised learning of phonemes, providing further evidence of the utility of the learnt representations.},
+  booktitle = {Proceedings of the 31st International Conference on Neural Information Processing Systems},
+  pages     = {6309–6318},
+  numpages  = {10},
+  location  = {Long Beach, California, USA},
+  series    = {NIPS'17}
+}
 
+@inproceedings{pixel-cnn,
+  author    = {Oord, A{\"a}ron van den and Kalchbrenner, Nal and Vinyals, Oriol and Espeholt, Lasse and Graves, Alex and Kavukcuoglu, Koray},
+  title     = {Conditional image generation with PixelCNN decoders},
+  year      = {2016},
+  isbn      = {9781510838819},
+  publisher = {Curran Associates Inc.},
+  address   = {Red Hook, NY, USA},
+  abstract  = {This work explores conditional image generation with a new image density model based on the PixelCNN architecture. The model can be conditioned on any vector, including descriptive labels or tags, or latent embeddings created by other networks. When conditioned on class labels from the ImageNet database, the model is able to generate diverse, realistic scenes representing distinct animals, objects, landscapes and structures. When conditioned on an embedding produced by a convolutional network given a single image of an unseen face, it generates a variety of new portraits of the same person with different facial expressions, poses and lighting conditions. We also show that conditional PixelCNN can serve as a powerful decoder in an image autoencoder. Additionally, the gated convolutional layers in the proposed model improve the log-likelihood of PixelCNN to match the state-of-the-art performance of PixelRNN on ImageNet, with greatly reduced computational cost.},
+  booktitle = {Proceedings of the 30th International Conference on Neural Information Processing Systems},
+  pages     = {4797–4805},
+  numpages  = {9},
+  location  = {Barcelona, Spain},
+  series    = {NIPS'16}
+}
+
+@inproceedings{cft,
+  author    = {Wang, Xintao and Yu, Ke and Dong, Chao and Change Loy, Chen},
+  booktitle = {2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  title     = {Recovering Realistic Texture in Image Super-Resolution by Deep Spatial Feature Transform},
+  year      = {2018},
+  volume    = {},
+  number    = {},
+  pages     = {606-615},
+  keywords  = {Semantics;Image segmentation;Image resolution;Modulation;Visualization;Training;Transforms},
+  doi       = {10.1109/CVPR.2018.00070}
+}
