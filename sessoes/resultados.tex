@@ -1,2 +1,55 @@
 \section{Resultados e discussão dos resultados}\label{sec:resultados}
 
+Esta seção apresenta os resultados obtidos nos experimentos de verificação biométrica com os modelos DeepPrint e FLARE (e suas respectivas variações de alinhamento e realce) sobre os conjuntos de dados das edições FVC2000, FVC2002 e FVC2004, considerando as partições de avaliação principal (Parte A) dos sensores reais (DB1 a DB3).
+
+A Tabela~\ref{tab:eer_base} apresenta a comparação de EER obtida pelas arquiteturas base (sem realce) no ponto de mínima diferença entre FAR e FRR. As Tabelas~\ref{tab:eer_deepprint_enh} e~\ref{tab:eer_flare_enh} detalham o efeito das etapas de realce (PriorEnh e UNetEnh) sobre o desempenho do DeepPrint e do FLARE (alinhamento por regressão e votação), respectivamente.
+
+\input{min_diff_summary.tex}
+
+A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição dos escores de similaridade entre o modelo DeepPrint e o modelo FLARE (com alinhamento por votação) para os conjuntos DB1-A a DB4-A da edição FVC2000. Observa-se que no FLARE a distribuição dos escores de impostores (vermelho) permanece concentrada em valores baixos (próximos a 0,2), resultando em uma separação quase total em relação aos usuários genuínos (verde) e justificando as taxas de EER substancialmente menores em comparação ao DeepPrint.
+
+\begin{figure}[htbp]
+\centering
+\subfloat[DeepPrint - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db1_a.png}}
+\hfill
+\subfloat[FLARE (Votação) - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db1_a.png}}
+
+\subfloat[DeepPrint - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db2_a.png}}
+\hfill
+\subfloat[FLARE (Votação) - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db2_a.png}}
+
+\subfloat[DeepPrint - DB3-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db3_a.png}}
+\hfill
+\subfloat[FLARE (Votação) - DB3-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db3_a.png}}
+
+\subfloat[DeepPrint - DB4-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db4_a.png}}
+\hfill
+\subfloat[FLARE (Votação) - DB4-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db4_a.png}}
+
+\caption{Comparação da distribuição dos escores de similaridade entre DeepPrint (coluna à esquerda) e FLARE com alinhamento por votação (coluna à direita) para os subconjuntos DB1-A a DB4-A do FVC2000.}\label{fig:histograms_fvc2000}
+\end{figure}
+
+Para avaliar o impacto dos métodos de realce sobre a capacidade discriminativa das representações, a Figura~\ref{fig:histograms_enhancement} apresenta as distribuições de escores obtidas com o emprego das redes PriorEnh (coluna à esquerda) e UNetEnh (coluna à direita) para os modelos DeepPrint e FLARE (com alinhamento por votação) nos subconjuntos DB1-A e DB2-A do FVC2000. Observa-se que, enquanto a UNetEnh preserva a separação nítida entre genuínos e impostores em ambos os modelos, a aplicação da PriorEnh provoca um deslocamento substancial da distribuição de genuínos em direção a escores menores, gerando forte sobreposição com os impostores e explicando a degradação observada nas taxas de erro.
+
+\begin{figure}[htbp]
+\centering
+\subfloat[DeepPrint + PriorEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_priorenh_fvc_2000_db1_a.png}}
+\hfill
+\subfloat[DeepPrint + UNetEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_unetenh_fvc_2000_db1_a.png}}
+
+\subfloat[DeepPrint + PriorEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_priorenh_fvc_2000_db2_a.png}}
+\hfill
+\subfloat[DeepPrint + UNetEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_unetenh_fvc_2000_db2_a.png}}
+
+\subfloat[FLARE (Votação) + PriorEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_priorenh_voting_pose_fvc_2000_db1_a.png}}
+\hfill
+\subfloat[FLARE (Votação) + UNetEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_unetenh_voting_pose_fvc_2000_db1_a.png}}
+
+\subfloat[FLARE (Votação) + PriorEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_priorenh_voting_pose_fvc_2000_db2_a.png}}
+\hfill
+\subfloat[FLARE (Votação) + UNetEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_unetenh_voting_pose_fvc_2000_db2_a.png}}
+
+\caption{Comparação da distribuição dos escores obtidos com os métodos de realce PriorEnh (coluna à esquerda) e UNetEnh (coluna à direita) para o DeepPrint (duas primeiras linhas) e FLARE com alinhamento por votação (duas últimas linhas) nos subconjuntos DB1-A e DB2-A do FVC2000.}\label{fig:histograms_enhancement}
+\end{figure}
+
+

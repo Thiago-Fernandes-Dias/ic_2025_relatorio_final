@@ -1,0 +1,99 @@
+% Tabelas unificadas: Modelos Base, DeepPrint com Realce e FLARE com Realce (Parte A, DB1-DB3)
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) das arquiteturas base (sem realce) nos subconjuntos Parte A do FVC.}\label{tab:eer_base}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{ll rrr}
+\toprule
+\textbf{Edição} & \textbf{Base} & \textbf{DeepPrint} & \textbf{FLARE (Reg.)} & \textbf{FLARE (Vot.)} \\
+\midrule
+FVC2000 & DB1-A & 3.36 & 0.81 & 0.81 \\
+ & DB2-A & 2.69 & 0.54 & 0.19 \\
+ & DB3-A & 3.85 & 0.63 & 0.59 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{3.30} & \textbf{0.66} & \textbf{0.53} \\
+\midrule
+FVC2002 & DB1-A & 5.20 & 0.44 & 0.25 \\
+ & DB2-A & 8.19 & 0.62 & 0.69 \\
+ & DB3-A & 8.51 & 3.32 & 2.11 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{7.30} & \textbf{1.46} & \textbf{1.02} \\
+\midrule
+FVC2004 & DB1-A & 17.05 & 0.25 & 0.24 \\
+ & DB2-A & 5.27 & 1.44 & 0.88 \\
+ & DB3-A & 4.91 & 0.38 & 0.31 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{9.07} & \textbf{0.69} & \textbf{0.48} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{6.56} & \textbf{0.94} & \textbf{0.67} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) do DeepPrint com métodos de realce nos subconjuntos Parte A do FVC.}\label{tab:eer_deepprint_enh}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{ll rrr}
+\toprule
+\textbf{Edição} & \textbf{Base} & \textbf{Original} & \textbf{PriorEnh} & \textbf{UNetEnh} \\
+\midrule
+FVC2000 & DB1-A & 3.36 & 12.45 & 4.66 \\
+ & DB2-A & 2.69 & 3.41 & 2.88 \\
+ & DB3-A & 3.85 & 3.51 & 3.78 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{3.30} & \textbf{6.46} & \textbf{3.77} \\
+\midrule
+FVC2002 & DB1-A & 5.20 & 5.10 & 5.29 \\
+ & DB2-A & 8.19 & 7.15 & 6.84 \\
+ & DB3-A & 8.51 & 9.70 & 8.66 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{7.30} & \textbf{7.32} & \textbf{6.93} \\
+\midrule
+FVC2004 & DB1-A & 17.05 & 16.69 & 17.00 \\
+ & DB2-A & 5.27 & 5.10 & 5.27 \\
+ & DB3-A & 4.91 & 5.01 & 5.54 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{9.07} & \textbf{8.93} & \textbf{9.27} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{6.56} & \textbf{7.57} & \textbf{6.66} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) do FLARE com métodos de realce nos subconjuntos Parte A do FVC.}\label{tab:eer_flare_enh}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{ll rrr rrr}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{FLARE (Regressão)}} & \multicolumn{3}{c}{\textbf{FLARE (Votação)}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+\textbf{Edição} & \textbf{Base} & \textbf{Base} & \textbf{Prior} & \textbf{UNet} & \textbf{Base} & \textbf{Prior} & \textbf{UNet} \\
+\midrule
+FVC2000 & DB1-A & 0.81 & 16.81 & 1.06 & 0.81 & 16.83 & 0.87 \\
+ & DB2-A & 0.54 & 17.42 & 0.37 & 0.19 & 17.43 & 0.19 \\
+ & DB3-A & 0.63 & 22.36 & 0.87 & 0.59 & 22.36 & 0.64 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{0.66} & \textbf{18.86} & \textbf{0.77} & \textbf{0.53} & \textbf{18.87} & \textbf{0.57} \\
+\midrule
+FVC2002 & DB1-A & 0.44 & 25.54 & 0.68 & 0.25 & 25.54 & 0.25 \\
+ & DB2-A & 0.62 & 34.25 & 0.56 & 0.69 & 34.24 & 0.31 \\
+ & DB3-A & 3.32 & 27.65 & 3.00 & 2.11 & 27.65 & 2.12 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{1.46} & \textbf{29.15} & \textbf{1.42} & \textbf{1.02} & \textbf{29.14} & \textbf{0.89} \\
+\midrule
+FVC2004 & DB1-A & 0.25 & 29.46 & 0.25 & 0.24 & 29.51 & 0.31 \\
+ & DB2-A & 1.44 & 20.29 & 1.48 & 0.88 & 20.29 & 1.31 \\
+ & DB3-A & 0.38 & 18.01 & 1.26 & 0.31 & 18.02 & 1.26 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{0.69} & \textbf{22.59} & \textbf{1.00} & \textbf{0.48} & \textbf{22.61} & \textbf{0.96} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{0.94} & \textbf{23.53} & \textbf{1.06} & \textbf{0.67} & \textbf{23.54} & \textbf{0.81} \\
+\bottomrule
+\end{tabular}
+\end{table}
