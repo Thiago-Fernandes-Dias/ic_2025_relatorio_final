@@ -1,55 +1,168 @@
 \section{Resultados e discussão dos resultados}\label{sec:resultados}
 
-Esta seção apresenta os resultados obtidos nos experimentos de verificação biométrica com os modelos DeepPrint e FLARE (e suas respectivas variações de alinhamento e realce) sobre os conjuntos de dados das edições FVC2000, FVC2002 e FVC2004, considerando as partições de avaliação principal (Parte A) dos sensores reais (DB1 a DB3).
+Esta seção apresenta os resultados obtidos nos experimentos de verificação biométrica com os modelos DeepPrint e FLARE (e suas respectivas variações de alinhamento e realce) sobre as partições de avaliação principal (Parte A) dos sensores reais (DB1 a DB3) das edições FVC2000, FVC2002 e FVC2004, bem como sobre os conjuntos de dados CrossMatch e U.are.U disponibilizados pela Neurotechnology.
 
 A Tabela~\ref{tab:eer_base} apresenta a comparação de EER obtida pelas arquiteturas base (sem realce) no ponto de mínima diferença entre FAR e FRR. As Tabelas~\ref{tab:eer_deepprint_enh} e~\ref{tab:eer_flare_enh} detalham o efeito das etapas de realce (PriorEnh e UNetEnh) sobre o desempenho do DeepPrint e do FLARE (alinhamento por regressão e votação), respectivamente.
 
-\input{min_diff_summary.tex}
+% Tabelas unificadas: Modelos Base, DeepPrint com Realce e FLARE com Realce (FVC Parte A DB1-DB3 e Neurotechnology)
 
-A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição dos escores de similaridade entre o modelo DeepPrint e o modelo FLARE (com alinhamento por votação) para os conjuntos DB1-A a DB4-A da edição FVC2000. Observa-se que no FLARE a distribuição dos escores de impostores (vermelho) permanece concentrada em valores baixos (próximos a 0,2), resultando em uma separação quase total em relação aos usuários genuínos (verde) e justificando as taxas de EER substancialmente menores em comparação ao DeepPrint.
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) das arquiteturas base (sem realce) nos subconjuntos Parte A do FVC e nas bases da Neurotechnology.}\label{tab:eer_base}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{ll rrr}
+\toprule
+\textbf{Edição / Origem} & \textbf{Base} & \textbf{DeepPrint} & \textbf{FLARE (Reg.)} & \textbf{FLARE (Vot.)} \\
+\midrule
+FVC2000 & DB1-A & 3.36 & 0.81 & 0.81 \\
+ & DB2-A & 2.69 & 0.54 & 0.19 \\
+ & DB3-A & 3.85 & 0.63 & 0.59 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{3.30} & \textbf{0.66} & \textbf{0.53} \\
+\midrule
+FVC2002 & DB1-A & 5.20 & 0.44 & 0.25 \\
+ & DB2-A & 8.19 & 0.62 & 0.69 \\
+ & DB3-A & 8.51 & 3.32 & 2.08 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{7.30} & \textbf{1.46} & \textbf{1.01} \\
+\midrule
+FVC2004 & DB1-A & 17.05 & 0.25 & 0.24 \\
+ & DB2-A & 5.27 & 1.44 & 0.87 \\
+ & DB3-A & 4.91 & 0.38 & 0.31 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{9.08} & \textbf{0.69} & \textbf{0.47} \\
+\midrule
+\multicolumn{2}{l}{\textbf{Média FVC}} & \textbf{6.56} & \textbf{0.94} & \textbf{0.67} \\
+\midrule
+Neurotechnology & CrossMatch & 3.31 & 0.49 & 0.12 \\
+ & U.are.U & 2.76 & 0.58 & 0.86 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média Neurotechnology}} & \textbf{3.04} & \textbf{0.53} & \textbf{0.49} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{5.92} & \textbf{0.86} & \textbf{0.64} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) do DeepPrint com métodos de realce nos subconjuntos Parte A do FVC e nas bases da Neurotechnology.}\label{tab:eer_deepprint_enh}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{ll rrr}
+\toprule
+\textbf{Edição / Origem} & \textbf{Base} & \textbf{Original} & \textbf{PriorEnh} & \textbf{UNetEnh} \\
+\midrule
+FVC2000 & DB1-A & 3.36 & 12.45 & 4.66 \\
+ & DB2-A & 2.69 & 3.41 & 2.88 \\
+ & DB3-A & 3.85 & 3.51 & 3.78 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{3.30} & \textbf{6.46} & \textbf{3.77} \\
+\midrule
+FVC2002 & DB1-A & 5.20 & 5.10 & 5.29 \\
+ & DB2-A & 8.19 & 7.15 & 6.84 \\
+ & DB3-A & 8.51 & 9.70 & 8.66 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{7.30} & \textbf{7.32} & \textbf{6.93} \\
+\midrule
+FVC2004 & DB1-A & 17.05 & 16.69 & 17.00 \\
+ & DB2-A & 5.27 & 5.10 & 5.27 \\
+ & DB3-A & 4.91 & 5.01 & 5.54 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{9.08} & \textbf{8.93} & \textbf{9.27} \\
+\midrule
+\multicolumn{2}{l}{\textbf{Média FVC}} & \textbf{6.56} & \textbf{7.57} & \textbf{6.66} \\
+\midrule
+Neurotechnology & CrossMatch & 3.31 & 3.31 & 3.28 \\
+ & U.are.U & 2.76 & 3.04 & 2.99 \\
+\cmidrule{2-5}
+\multicolumn{2}{l}{\textbf{Média Neurotechnology}} & \textbf{3.04} & \textbf{3.17} & \textbf{3.13} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{5.92} & \textbf{6.77} & \textbf{6.02} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{EER (\%) do FLARE com métodos de realce nos subconjuntos Parte A do FVC e nas bases da Neurotechnology.}\label{tab:eer_flare_enh}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{ll rrr rrr}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{FLARE (Regressão)}} & \multicolumn{3}{c}{\textbf{FLARE (Votação)}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+\textbf{Edição / Origem} & \textbf{Base} & \textbf{Base} & \textbf{Prior} & \textbf{UNet} & \textbf{Base} & \textbf{Prior} & \textbf{UNet} \\
+\midrule
+FVC2000 & DB1-A & 0.81 & 7.13 & 1.06 & 0.81 & 8.02 & 0.87 \\
+ & DB2-A & 0.54 & 0.56 & 0.37 & 0.19 & 0.24 & 0.19 \\
+ & DB3-A & 0.63 & 0.93 & 0.87 & 0.59 & 0.57 & 0.64 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2000}} & \textbf{0.66} & \textbf{2.87} & \textbf{0.77} & \textbf{0.53} & \textbf{2.94} & \textbf{0.57} \\
+\midrule
+FVC2002 & DB1-A & 0.44 & 0.56 & 0.68 & 0.25 & 0.31 & 0.25 \\
+ & DB2-A & 0.62 & 0.62 & 0.56 & 0.69 & 0.82 & 0.31 \\
+ & DB3-A & 3.32 & 4.14 & 3.00 & 2.08 & 3.05 & 2.12 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2002}} & \textbf{1.46} & \textbf{1.77} & \textbf{1.41} & \textbf{1.01} & \textbf{1.39} & \textbf{0.89} \\
+\midrule
+FVC2004 & DB1-A & 0.25 & 0.69 & 0.25 & 0.24 & 0.44 & 0.31 \\
+ & DB2-A & 1.44 & 1.38 & 1.48 & 0.87 & 1.19 & 1.31 \\
+ & DB3-A & 0.38 & 0.50 & 1.26 & 0.31 & 0.57 & 1.26 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média FVC2004}} & \textbf{0.69} & \textbf{0.86} & \textbf{1.00} & \textbf{0.47} & \textbf{0.73} & \textbf{0.96} \\
+\midrule
+\multicolumn{2}{l}{\textbf{Média FVC}} & \textbf{0.94} & \textbf{1.83} & \textbf{1.06} & \textbf{0.67} & \textbf{1.69} & \textbf{0.81} \\
+\midrule
+Neurotechnology & CrossMatch & 0.49 & 0.73 & 0.86 & 0.12 & 0.12 & 0.25 \\
+ & U.are.U & 0.58 & 0.51 & 0.58 & 0.86 & 0.95 & 1.06 \\
+\cmidrule{2-8}
+\multicolumn{2}{l}{\textbf{Média Neurotechnology}} & \textbf{0.53} & \textbf{0.62} & \textbf{0.72} & \textbf{0.49} & \textbf{0.53} & \textbf{0.66} \\
+\midrule[\heavyrulewidth]
+\multicolumn{2}{l}{\textbf{Média Geral}} & \textbf{0.86} & \textbf{1.61} & \textbf{1.00} & \textbf{0.64} & \textbf{1.48} & \textbf{0.78} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição dos pontuações de similaridade entre o modelo DeepPrint e o modelo FLARE (com alinhamento por votação) para os conjuntos DB1-A a DB4-A da edição FVC2000. Observa-se que no FLARE a distribuição dos pontuações de impostores (vermelho) permanece concentrada em valores baixos (próximos a 0,2), resultando em uma separação quase total em relação aos usuários genuínos (verde) e justificando as taxas de EER substancialmente menores em comparação ao DeepPrint.
 
 \begin{figure}[htbp]
 \centering
-\subfloat[DeepPrint - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db1_a.png}}
+\subfloat[DeepPrint - DB1-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_fvc_2000_db1_a.png}}
 \hfill
-\subfloat[FLARE (Votação) - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db1_a.png}}
+\subfloat[FLARE (Votação) - DB1-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_fvc_2000_db1_a.png}}
 
-\subfloat[DeepPrint - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db2_a.png}}
+\subfloat[DeepPrint - DB2-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_fvc_2000_db2_a.png}}
 \hfill
-\subfloat[FLARE (Votação) - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db2_a.png}}
+\subfloat[FLARE (Votação) - DB2-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_fvc_2000_db2_a.png}}
 
-\subfloat[DeepPrint - DB3-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db3_a.png}}
+\subfloat[DeepPrint - DB3-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_fvc_2000_db3_a.png}}
 \hfill
-\subfloat[FLARE (Votação) - DB3-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db3_a.png}}
+\subfloat[FLARE (Votação) - DB3-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_fvc_2000_db3_a.png}}
 
-\subfloat[DeepPrint - DB4-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_fvc_2000_db4_a.png}}
+\subfloat[DeepPrint - DB4-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_fvc_2000_db4_a.png}}
 \hfill
-\subfloat[FLARE (Votação) - DB4-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_voting_pose_fvc_2000_db4_a.png}}
+\subfloat[FLARE (Votação) - DB4-A]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_fvc_2000_db4_a.png}}
 
-\caption{Comparação da distribuição dos escores de similaridade entre DeepPrint (coluna à esquerda) e FLARE com alinhamento por votação (coluna à direita) para os subconjuntos DB1-A a DB4-A do FVC2000.}\label{fig:histograms_fvc2000}
+\caption{Comparação da distribuição dos pontuações de similaridade entre DeepPrint (coluna à esquerda) e FLARE com alinhamento por votação (coluna à direita) para os subconjuntos DB1-A a DB4-A do FVC2000.}\label{fig:histograms_fvc2000}
 \end{figure}
 
-Para avaliar o impacto dos métodos de realce sobre a capacidade discriminativa das representações, a Figura~\ref{fig:histograms_enhancement} apresenta as distribuições de escores obtidas com o emprego das redes PriorEnh (coluna à esquerda) e UNetEnh (coluna à direita) para os modelos DeepPrint e FLARE (com alinhamento por votação) nos subconjuntos DB1-A e DB2-A do FVC2000. Observa-se que, enquanto a UNetEnh preserva a separação nítida entre genuínos e impostores em ambos os modelos, a aplicação da PriorEnh provoca um deslocamento substancial da distribuição de genuínos em direção a escores menores, gerando forte sobreposição com os impostores e explicando a degradação observada nas taxas de erro.
+
+A Figura~\ref{fig:histograms_neurotechnology} apresenta a comparação dos pontuações entre o DeepPrint e o FLARE (alinhamento por votação) para os conjuntos CrossMatch e U.are.U da Neurotechnology. Observa-se comportamento análogo ao verificado no FVC: o FLARE exibe pontuações de impostores bastante concentrados em valores inferiores a 0,25 e genuínos acima de 0,45, conferindo EER de 0,12\% no CrossMatch e 0,86\% no U.are.U, enquanto o DeepPrint apresenta distribuições com maior proximidade entre as classes (EER de 3,31\% e 2,76\%, respectivamente).
 
 \begin{figure}[htbp]
 \centering
-\subfloat[DeepPrint + PriorEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_priorenh_fvc_2000_db1_a.png}}
+\subfloat[DeepPrint - CrossMatch]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_crossmatch.png}}
 \hfill
-\subfloat[DeepPrint + UNetEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_unetenh_fvc_2000_db1_a.png}}
+\subfloat[FLARE (Votação) - CrossMatch]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_crossmatch.png}}
 
-\subfloat[DeepPrint + PriorEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_priorenh_fvc_2000_db2_a.png}}
+\subfloat[DeepPrint - U.are.U]{\includegraphics[width=0.48\textwidth]{figures/histograms/deep_print_uareu.png}}
 \hfill
-\subfloat[DeepPrint + UNetEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/deep_print_unetenh_fvc_2000_db2_a.png}}
+\subfloat[FLARE (Votação) - U.are.U]{\includegraphics[width=0.48\textwidth]{figures/histograms/flare_voting_pose_uareu.png}}
 
-\subfloat[FLARE (Votação) + PriorEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_priorenh_voting_pose_fvc_2000_db1_a.png}}
-\hfill
-\subfloat[FLARE (Votação) + UNetEnh - DB1-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_unetenh_voting_pose_fvc_2000_db1_a.png}}
-
-\subfloat[FLARE (Votação) + PriorEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_priorenh_voting_pose_fvc_2000_db2_a.png}}
-\hfill
-\subfloat[FLARE (Votação) + UNetEnh - DB2-A]{\includegraphics[width=0.48\textwidth]{images/charts/histograms/flare_unetenh_voting_pose_fvc_2000_db2_a.png}}
-
-\caption{Comparação da distribuição dos escores obtidos com os métodos de realce PriorEnh (coluna à esquerda) e UNetEnh (coluna à direita) para o DeepPrint (duas primeiras linhas) e FLARE com alinhamento por votação (duas últimas linhas) nos subconjuntos DB1-A e DB2-A do FVC2000.}\label{fig:histograms_enhancement}
+\caption{Comparação da distribuição dos pontuações de similaridade entre DeepPrint (coluna à esquerda) e FLARE com alinhamento por votação (coluna à direita) para os conjuntos CrossMatch e U.are.U da Neurotechnology.}\label{fig:histograms_neurotechnology}
 \end{figure}
 
+Em relação ao impacto dos métodos de realce sobre a capacidade discriminativa das representações (Tabelas~\ref{tab:eer_deepprint_enh} e~\ref{tab:eer_flare_enh}), observa-se que a UNetEnh preserva de maneira consistente o desempenho em ambos os modelos, mantendo taxas de EER próximas às das arquiteturas base. Por outro lado, o uso da PriorEnh provoca aumento expressivo do EER em determinadas bases com maior presença de ruído, como no DB1-A do FVC2000 (com 12,45\% no DeepPrint e 8,02\% no FLARE), embora no DB2-A o FLARE mantenha elevada separação (0,24\%). Já nas bases da Neurotechnology, devido à boa qualidade intrínseca das capturas por sensores de alta resolução, tanto a PriorEnh quanto a UNetEnh preservam a estabilidade das representações, mantendo os índices de EER do FLARE em níveis inferiores a 1,1\% e os do DeepPrint em torno de 3,0\% a 3,3\%.
 

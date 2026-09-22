@@ -76,8 +76,8 @@ Após a imagem de entrada passar por todas as camadas convolucionais, ela passa 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{diagrama-deepprint.png}
-    \caption{Arquitetura da rede neural \textit{DeepPrint}}
+    \includegraphics[width=0.8\textwidth]{diagrams/deepprint-arch.png}
+    \caption{Arquitetura do \textit{DeepPrint}}
     \label{fig:deepprint-arch}
 \end{figure}
 
@@ -89,11 +89,20 @@ Inicialmente a imagem passa por uma etapa de alinhamento que utiliza duas técni
 
 Após o alinhamento, a imagem é realçada por dois modelos diferentes, o~\textit{UNetEnh} e o~\textit{PriorEnh}. A~\textit{UNetEnh} e uma rede neural convolucional baseada na arquitetura U-Net~\cite{unet} para segmentação e remoção de ruídos. A rede PriorEnh, por sua vez, desempenha o papel crítico de reconstruir parcialmente a estrutura das cristas em áreas severamente danificadas ou apagadas, utilizando para isso um conhecimento prévio sobre a geometria padrão de impressões digitais de boa qualidade.
 
-Para a extração de características,~\citeonline{flare} desenvolveram a Rede de Representação Densa de Tamanho Fixo (\textit{Fixed-length Dense Representation Network}, FDRN). A representação extraída por essa rede, diferente do~\textit{DeepPrint}, é uma representação tridimensional que codifica de forma mais natural a segmentação das impressões digitais, assim como as suas minúcias. Ela é baseada na arquitetura da rede ResNet-34~\cite{resnet-34}, com a primeira camada de Max Pooling removida para preservação de detalhes mais finos impressões digitais. De forma semelhante ao que foi proposto em~\cite{deep_print}, a rede é dividida em dois ramos para aprendizado multi-tarefa~\cite{multitask-learning}: a primeira sub-rede extrai um mapa de minúcias ao mesmo tempo que aprende a gerar uma representação de tamanho fixo que codifica informações sobre as minúcias; a segunda sub-rede extrai um mapa de segmentação que separa a impressão digital do fundo da imagem enquanto aprende a gerar uma representação de tamanho fixo com base nos padrões dos cumes da digital. A representação final é obtida ao concatenar os resultados de ambas as sub-redes.
+Para a extração de características,~\citeonline{flare} desenvolveram a Rede de Representação Densa de Tamanho Fixo (\textit{Fixed-length Dense Representation Network}, FDRN). A representação extraída por essa rede, diferente do~\textit{DeepPrint}, é uma representação tridimensional que codifica de forma mais natural a segmentação das impressões digitais, assim como as suas minúcias. Ela é baseada na arquitetura da rede ResNet-34~\cite{resnet-34}, com a primeira camada de~\textit{Max Pooling} removida para preservação de detalhes mais finos impressões digitais. De forma semelhante ao que foi proposto em~\cite{deep_print}, a rede é dividida em dois ramos para aprendizado multi-tarefa~\cite{multitask-learning}: a primeira sub-rede extrai um mapa de minúcias ao mesmo tempo que aprende a gerar uma representação de tamanho fixo que codifica informações sobre as minúcias; a segunda sub-rede extrai um mapa de segmentação que separa a impressão digital do fundo da imagem enquanto aprende a gerar uma representação de tamanho fixo com base nos padrões dos cumes da digital. Ambas as sub-redes incluem um módulo de incorporação posicional senoidal~\cite{transformers} para melhorar a capacidade de distinção das representações.
+
+A representação final é obtida ao concatenar os resultados de ambas as sub-redes e calcular o produto de Hadamard com os tensores concatenados e a máscara de segmentação. Sendo $f_s$ e $f_m$ os descritores de textura e minúcia, respectivamente, e $S$ a máscara de segmentação, o descritor final de tamanho fixo é obtido a partir da expressão $f = (f_s \oplus f_m) \odot S$. 
 
 ~\citeonline{flare} explica que representações densas multidimensionais detém uma capacidade descritiva superior a representações unidimensionais, como a que é extraída pelo~\textit{DeepPrint}. Os autores sugerem que essa agregação global em um único vetor global abstrato faz com que os modelos percam informações estruturais e geométricas cruciais sobre a organização das cristas da impressão digital. Além disso, as vetores de características unidimensionais são vulneráveis a interferências, pois não modelam ou suprimem de forma explícita as áreas de fundo (\textit{background}) no nível do descritor. Isso pode prejudicar a precisão de correspondência quando há fortes ruídos ou quando a área de captura da digital varia muito, como ocorre em impressões parciais ou de baixa qualidade.
 
-Para a verificação de impressões digitais a representação tridimensional é achatada para um vetor, e então é calculada a distância de cossenos entre as duas impressões. Devido ao processo de alinhamento e posterior concatenação das duas representações geradas, baseadas em minúcias e na segmentação, o calculo de distâncias só considera as regiões de sobreposição entre as duas digitais.
+No processo de verificação entre uma digital de consulta (\textit{query}) e uma de referência (\textit{gallery}), os descritores tridimensionais e suas máscaras são achatados em vetores unidimensionais para a realização das comparações matriciais5. A pontuação de similaridade $M_i(q, g)$ para cada par de imagens é calculada pela fórmula do cosseno normalizado $M_i(q, g) = \frac{{f_q'}^T \cdot f_g'}{\|f_q \odot S_g\|_F \cdot \|f_g \odot S_q\|_F}$6. No numerador, a multiplicação matricial do vetor transposto de consulta pelo vetor de referência (${f_q'}^T \cdot f_g'$) realiza o produto escalar das características apenas nas regiões onde ambas as impressões possuem primeiro plano válido, visto que o fundo de cada imagem já foi previamente anulado pela sua respectiva máscara46.No denominador, o produto de Hadamard cruzado ($f_q \odot S_g$ e $f_g \odot S_q$) filtra o descritor de uma imagem utilizando a máscara da outra, isolando estritamente a área de intersecção espacial compartilhada entre elas. Em seguida, a norma de Frobenius ($\|\cdot\|_F$) calcula a magnitude desse tensor resultante na região sobreposta, atuando como o fator de normalização da similaridade de cosseno para evitar distorções causadas por variações no tamanho da área de contato.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{diagrams/flare-arch.png}
+    \caption{Arquitetura do FLARE}
+    \label{fig:flare-arch}
+\end{figure}
 
 
 \subsubsection{Representação baseada em Cilindros}\label{subsubsec:mcc-alg}
