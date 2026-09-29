@@ -29,11 +29,11 @@ Na Tabela~\ref{tab:revisao-bibliografica} há alguns dos artigos lidos e as téc
     \textbf{Referência} & \textbf{Conjunto de dados} & \textbf{Métricas} & \textbf{Código aberto} \\ 
     \midrule
     \endhead
-    \citeonline{mcc} & FVC2006 & EER, FMR & Sim \\
+    \citeonline{mcc} & FVC2006 & $EER$, $FMR$ & Sim \\
     \midrule
     \citeonline{MinutiaeNet} & FVC2002, FVC2004, NIST SD27 & F1 Score, Precisão, \textit{Recall} & Sim \\
     \midrule
-    \citeonline{deep_print} & Privado, NIST SD4, NIST SD14, FVC2004 & \textit{Acc}, FMR & Sim \\
+    \citeonline{deep_print} & Privado, NIST SD4, NIST SD14, FVC2004 & \textit{Acc}, $FMR$ & Sim \\
     \midrule
     \citeonline{latent-fingerprint-segmentation} & NIST SD27, WVU, IIITD & MDR, FDR, SA & Não \\
     \midrule
@@ -41,7 +41,7 @@ Na Tabela~\ref{tab:revisao-bibliografica} há alguns dos artigos lidos e as téc
     \midrule
     \citeonline{fingernet} & Privado, NIST SD27 & Precisão, \textit{Recall} & Sim \\
     \midrule
-    \citeonline{highres_fingerprint_matching} & Privado, FVC2002, FVC2004 & EER, FMR, FNMR & Não \\
+    \citeonline{highres_fingerprint_matching} & Privado, FVC2002, FVC2004 & $EER$, $FMR$, $FNMR$ & Não \\
     \midrule
     \citeonline{fcnp} & Privado, NIST SD4, NIST SD14 & Top-K ER & Não \\
     \midrule
@@ -68,7 +68,7 @@ Em~\cite{mcc} foi proposta uma forma de representação chamada de~\textit{Minut
 
 Em~\cite{flare} é apresentado o FLARE, um framework de reconhecimento de impressões digitais baseado na extração de representações de tamanho fixo na forma de um tensor. O método opera em três etapas integradas: inicialmente, alinha a imagem em um sistema de coordenadas padronizado utilizando métodos complementares de estimativa de pose 2D; a seguir, submete a imagem a duas estratégias de aprimoramento (UNetEnh e PriorEnh) que melhoram a clareza das cristas e suprimem o ruído de fundo preservando a textura original da modalidade da captura; por fim, uma rede neural extrai um descritor denso tridimensional que foca exclusivamente na área útil da impressão digital, codificando com alta precisão as informações espaciais globais e locais (minúcias).
 
-Dentre as técnicas que utilizam redes neurais profundas para extração de características, as que se destacaram são o mapa de minúcias, que é uma representação de tamanho variável que armazena a posição de cada minúcia e sua orientação, e as representações de tamanho fixo, que podem ser os pesos das camadas totalmente conectadas das CNNs imediatamente antes do cálculo das probabilidades de cada uma das classes (normalmente de qual dedo a digital foi coletada), isto é, um vetor unidimensional, ou um descritor denso multidimensional, capaz de agregar mais características das digitais, como segmentação e posição das minúcias. Conforme explica~\citeonline{deep_print}, a vantagem das representações de tamanho fixo é a necessidade de menos poder computacional para verificação, que pode ser feita por um simples cálculo de distância e comparação com um limiar de corte, e de espaço para armazenamento. O DeepPrint e o FLARE são exemplos de técnicas que extraem representações de tamanho fixo. A primeira é um vetor de tamanho fixo e a segunda um tensor tridimensional.
+Dentre as técnicas que utilizam redes neurais profundas para extração de características, as que se destacaram são o mapa de minúcias, que é uma representação de tamanho variável que armazena a posição de cada minúcia e sua orientação, e as representações de tamanho fixo, que podem ser os~\textit{embeddings} das camadas totalmente conectadas das CNNs imediatamente antes do cálculo das probabilidades de cada uma das classes (normalmente de qual dedo a digital foi coletada), isto é, um vetor unidimensional, ou um descritor denso multidimensional, capaz de agregar mais características das digitais, como segmentação e posição das minúcias. Conforme explica~\citeonline{deep_print}, a vantagem das representações de tamanho fixo é a necessidade de menos poder computacional para verificação, que pode ser feita por um simples cálculo de distância e comparação com um limiar de corte, e de espaço para armazenamento. O DeepPrint e o FLARE são exemplos de técnicas que extraem representações de tamanho fixo.
 
 Outro aspecto que esteve presente nos experimentos foi a utilização de informações de domínio, que são as características intrínsecas das digitais~\cite{handbook_of_fp_recognition}. Quando essas informações são incluídas no treinamento dos modelos ou aprendidas em conjunto com as representações o seu desempenho tende a ser superior ao obtido com atributos mais abstratos, como apenas a textura das digitais.
 

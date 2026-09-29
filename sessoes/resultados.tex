@@ -1,13 +1,13 @@
 \section{Resultados e discussão dos resultados}\label{sec:resultados}
 
-Esta seção apresenta os resultados obtidos nos experimentos de verificação biométrica com os modelos DeepPrint e FLARE (e suas respectivas variações de alinhamento e realce) sobre as partições de avaliação principal (Parte A) dos sensores reais (DB1 a DB3) das edições FVC2000, FVC2002 e FVC2004, e os resultados do MCC com a parte FVC2000, bem como sobre os conjuntos de dados CrossMatch e U.are.U disponibilizados pela Neurotechnology.
+Esta seção apresenta os resultados obtidos nos experimentos de verificação biométrica com os modelos DeepPrint e FLARE (e suas respectivas variações de alinhamento e realce) sobre as partições de avaliação principal (Parte A) dos sensores reais (DB1 a DB3) das edições FVC2000, FVC2002 e FVC2004, e os resultados do MCC com o FVC2000, bem como sobre os conjuntos de dados CrossMatch e U.are.U disponibilizados pela Neurotechnology.  Devido a limitações de recursos computacionais disponíveis, não foi possível aplicar o~\textit{FingerNet} em todos os conjuntos de dados. Consequentemente, o MCC não foi testado no FVC2002 e FVC2004. 
 
-A Tabela~\ref{tab:eer_base} apresenta a comparação de EER obtida pelas abordagens base (sem realce) no ponto de mínima diferença entre FAR e FRR. O método MCC foi avaliado nas bases da edição FVC2000 e da Neurotechnology. Foram também realizados experimentos para avaliar o efeito do realce (PriorEnh e UNetEnh) sobre o desempenho dos modelos. Entretanto, no geral, o realce não aprimorou o desempenho. O resultado dessa avaliação adicional está disponível no repositório no Github\footnote{\url{https://github.com/Thiago-Fernandes-Dias/ic_2025_experimentos}} com o código-fonte dos experimentos.
+A Tabela~\ref{tab:eer_base} apresenta a comparação de $EER$ obtida pelas abordagens base (sem realce) no ponto de mínima diferença entre FAR e FRR. O método MCC foi avaliado nas bases da edição FVC2000 e da Neurotechnology. Foram também realizados experimentos para avaliar o efeito do realce (PriorEnh e UNetEnh) sobre o desempenho dos modelos. Entretanto, no geral, o realce não aprimorou o desempenho. O resultado dessa avaliação adicional está disponível no repositório no Github\footnote{\url{https://github.com/Thiago-Fernandes-Dias/ic_2025_experimentos}} com o código-fonte dos experimentos.
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{EER (\%) dos métodos base (sem realce) nos subconjuntos Parte A do FVC e nas bases da Neurotechnology.}\label{tab:eer_base}
+\caption{$EER$ (\%) dos métodos base (sem realce) nos subconjuntos Parte A do FVC e nas bases da Neurotechnology.}\label{tab:eer_base}
 \setlength{\tabcolsep}{7pt}
 \begin{tabular}{ll rrrr}
 \toprule
@@ -43,7 +43,7 @@ Neurotechnology & CrossMatch & 3.31 & 0.49 & 0.12 & 2.10 \\
 \end{tabular}
 \end{table}
 
-A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição das pontuações de similaridade entre DeepPrint, FLARE (com alinhamento por votação) e MCC para o subconjunto DB1-A da edição FVC2000. Observa-se que, no FLARE, a distribuição das pontuações de impostores (vermelho) permanece concentrada em valores baixos (próximos a 0,2), resultando em uma separação quase total em relação aos usuários genuínos (verde) e justificando as taxas de EER substancialmente menores em comparação ao DeepPrint e ao MCC. No MCC, a sobreposição entre as distribuições no DB1-A é ligeiramente inferior à do DeepPrint, refletindo a menor EER (2,69\% contra 3,36\%). Os histogramas para os demais conjuntos de dados estão disponíveis no repositório no GitHub e apresentam tendências similares às observadas nos histogramas destacados.
+A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição das pontuações de similaridade entre DeepPrint, FLARE (com alinhamento por votação) e MCC para o subconjunto DB1-A da edição FVC2000. Observa-se que, no FLARE, a distribuição das pontuações de impostores (vermelho) permanece concentrada em valores baixos (próximos a 0,2), resultando em uma separação quase total em relação aos usuários genuínos (verde) e justificando as taxas de $EER$ substancialmente menores em comparação ao DeepPrint e ao MCC. No MCC, a sobreposição entre as distribuições no DB1-A é ligeiramente inferior à do DeepPrint, refletindo a menor $EER$ (2,69\% contra 3,36\%). Os histogramas para os demais conjuntos de dados estão disponíveis no repositório no GitHub e apresentam tendências similares às observadas nos histogramas destacados.
 
 \begin{figure}[htbp]
 \centering
@@ -56,7 +56,7 @@ A Figura~\ref{fig:histograms_fvc2000} apresenta a comparação da distribuição
 \caption{Comparação da distribuição das pontuações de similaridade entre DeepPrint, FLARE com alinhamento por votação e MCC para o subconjunto DB1-A do FVC2000.}\label{fig:histograms_fvc2000}
 \end{figure}
 
-A Figura~\ref{fig:histograms_neurotechnology} apresenta a comparação das pontuações entre o DeepPrint, o FLARE (alinhamento por votação) e o MCC para os conjuntos CrossMatch e U.are.U da Neurotechnology. Nessas bases, capturadas por sensores ópticos de alta qualidade, o MCC apresenta separação superior à do DeepPrint (EER de 2,10\% no CrossMatch e 1,94\% no U.are.U, frente a 3,31\% e 2,76\% do DeepPrint), enquanto o FLARE mantém o melhor poder discriminativo geral (EER de 0,12\% e 0,86\%, respectivamente).
+A Figura~\ref{fig:histograms_neurotechnology} apresenta a comparação das pontuações entre o DeepPrint, o FLARE (alinhamento por votação) e o MCC para os conjuntos CrossMatch e U.are.U da Neurotechnology. Nessas bases, capturadas por sensores ópticos de alta qualidade, o MCC apresenta separação superior à do DeepPrint ($EER$ de 2,10\% no CrossMatch e 1,94\% no U.are.U, frente a 3,31\% e 2,76\% do DeepPrint), enquanto o FLARE mantém o melhor poder discriminativo geral ($EER$ de 0,12\% e 0,86\%, respectivamente).
 
 \begin{figure}[htbp]
 \centering
