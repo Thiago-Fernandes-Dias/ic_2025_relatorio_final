@@ -9,32 +9,6 @@
   doi     = {10.1109/TIFS.2006.873653}
 }
 
-@article{LEVI1972327,
-  title    = {Structural descriptions of fingerprint images},
-  journal  = {Information Sciences},
-  volume   = {4},
-  number   = {3},
-  pages    = {327-355},
-  year     = {1972},
-  issn     = {0020-0255},
-  doi      = {https://doi.org/10.1016/S0020-0255(72)80020-3},
-  url      = {https://www.sciencedirect.com/science/article/pii/S0020025572800203},
-  author   = {Giorgio Levi and Franco Sirovich},
-  abstract = {The algorithm described is the first step of an automatic fingerprint classification system, whose motivation is to permit correlation studies between fingerprints and congenital diseases. It is concerned with the generation of stylized descriptions of fingerprints, obtained by applying linguistically oriented procedures.}
-}
-
-@inproceedings{ChenSeg,
-  author    = {Chen, T.P. and Jiang, X. and Yau, W.Y.},
-  booktitle = {2004 International Conference on Image Processing, 2004. ICIP '04.},
-  title     = {Fingerprint image quality analysis},
-  year      = {2004},
-  volume    = {2},
-  number    = {},
-  pages     = {1253-1256 Vol.2},
-  keywords  = {Fingerprint recognition;Image matching;Image analysis;Image sensors;Authentication;Biosensors;Optical sensors;Area measurement;Fingers;Biometrics},
-  doi       = {10.1109/ICIP.2004.1419725}
-}
-
 @article{deep_print,
   abstract  = {We present DeepPrint, a deep network, which learns to extract fixed-length fingerprint representations of only 200 bytes. DeepPrint incorporates fingerprint domain knowledge, including alignment and minutiae detection, into the deep network architecture to maximize the discriminative power of its representation. The compact, DeepPrint representation has several advantages over the prevailing variable length minutiae representation which (i) requires computationally expensive graph matching techniques, (ii) is difficult to secure using strong encryption schemes (e.g., homomorphic encryption), and (iii) has low discriminative power in poor quality fingerprints where minutiae extraction is unreliable. We benchmark DeepPrint against two top performing COTS SDKs (Verifinger and Innovatrics) from the NIST and FVC evaluations. Coupled with a re-ranking scheme, the DeepPrint rank-1 search accuracy on the NIST SD4 dataset against a gallery of 1.1 million fingerprints is comparable to the top COTS matcher, but it is significantly faster (DeepPrint: 98.80% in 0.3 seconds vs. COTS A: 98.85% in 27 seconds). To the best of our knowledge, the DeepPrint representation is the most compact and discriminative fixed-length fingerprint representation reported in the academic literature.},
   author    = {Joshua J. Engelsma and Kai Cao and Anil K. Jain},
@@ -50,20 +24,6 @@
   title     = {Learning a Fixed-Length Fingerprint Representation},
   volume    = {43},
   year      = {2021}
-}
-
-@article{effect_of_the_sampling_of_dataset_in_hpo,
-  author    = {DeCastro-Garc{\'{i}}a, Noemí and Muñoz Casta{\~{n}}eda, {\'{A}}ngel Luis and Escudero Garc{\'{i}}a, David and Carriegos, Miguel V.},
-  title     = {Effect of the Sampling of a Dataset in the Hyperparameter Optimization Phase over the Efficiency of a Machine Learning Algorithm},
-  journal   = {Complexity},
-  year      = {2019},
-  month     = {Feb},
-  day       = {04},
-  publisher = {Hindawi},
-  volume    = {2019},
-  pages     = {6278908},
-  issn      = {1076-2787},
-  doi       = {10.1155/2019/6278908}
 }
 
 @inproceedings{fcn,
@@ -102,15 +62,6 @@
   doi       = {10.1109/BTAS.2017.8272688}
 }
 
-@book{FingerPrintMechanics,
-  title     = {Fingerprint Mechanics: A Handbook; Fingerprints from Crime Scene to Courtroom},
-  author    = {Scott, W.R.},
-  lccn      = {51011581},
-  url       = {https://books.google.com.br/books?id=zMA1AAAAIAAJ},
-  year      = {1951},
-  publisher = {Thomas}
-}
-
 @book{FingerPrintTechniques,
   title     = {Fingerprint Techniques},
   author    = {Moenssens, A.A.},
@@ -120,16 +71,6 @@
   url       = {https://books.google.com.br/books?id=aF6qQgAACAAJ},
   year      = {1971},
   publisher = {Chilton Book Company}
-}
-
-@inproceedings{gabor-wavelet-transform,
-  author = {Karimimehr, Naeim and Beheshti, Seyed Ali Asghar and Bahaghighat, Mahdi},
-  year   = {2010},
-  month  = {05},
-  pages  = {316-320},
-  title  = {Fingerprint image enhancement using Gabor wavelet transform},
-  isbn   = {978-1-4244-6760-0},
-  doi    = {10.1109/IRANIANCEE.2010.5507055}
 }
 
 @book{handbook_of_biometrics,
@@ -192,17 +133,6 @@
   publisher = {IEEE}
 }
 
-@article{Killourhy2009,
-  author  = {Killourhy, Kevin S. and Maxion, Roy A.},
-  doi     = {10.1109/DSN.2009.5270346},
-  isbn    = {9781424444212},
-  issn    = {9781424444212},
-  journal = {Proceedings of the International Conference on Dependable Systems and Networks},
-  pages   = {125--134},
-  title   = {{Comparing anomaly-detection algorithms for keystroke dynamics}},
-  year    = {2009}
-}
-
 @inbook{latent-fingerprint-segmentation,
   abstract  = {We present a deep artificial neural network (DANN) model that learns latent fingerprint image patches using a stack of restricted Boltzmann machines (RBMs), and uses it to perform segmentation of latent fingerprint images. Artificial neural networks (ANN) are biologically inspired architectures that produce hierarchies of maps through learned weights or filters. Latent fingerprints are fingerprint impressions unintentionally left on surfaces at a crime scene. To make identifications or exclusions of suspects, latent fingerprint examiners analyze and compare latent fingerprints to known fingerprints of individuals. Due to the poor quality and often complex image background and overlapping patterns characteristic of latent fingerprint images, separating the fingerprint region of interest from complex image background and overlapping patterns is very challenging. Our proposed DANN model based on RBMs learns fingerprint image patches in two phases. The first phase (unsupervised pre-training) involves learning an identity mapping of the input image patches. In the second phase, fine-tuning and gradient updates are performed to minimize the cost function on the training dataset. The resulting trained model is used to classify the image patches into fingerprint and non-fingerprint classes.We use the fingerprint patches to reconstruct the latent fingerprint image and discard the non-fingerprint patches which contain the structured noise in the original latent fingerprint. The proposed model is evaluated by comparing the results from the state-of-the-art latent fingerprint segmentation models. The results of our evaluation show the superior performance of the proposed method.},
   author    = {Jude Ezeobiejesi and Bir Bhanu},
@@ -214,7 +144,7 @@
   title     = {Latent fingerprint image segmentation using deep neural network},
   volume    = {PartF1},
   year      = {2017}
-} 
+}
 
 @article{longitudinal,
   author   = {Soweon Yoon  and Anil K. Jain },
@@ -228,7 +158,7 @@
   url      = {https://www.pnas.org/doi/abs/10.1073/pnas.1410272112},
   eprint   = {https://www.pnas.org/doi/pdf/10.1073/pnas.1410272112},
   abstract = {Fingerprint recognition, which is considered to be a reliable means for human identification, has been used in many applications ranging from law enforcement and forensics to unlocking mobile phones. Despite its successful deployment, the fundamental premise of fingerprint-based identification—persistence and uniqueness of fingerprints—has not yet been well studied, resulting in challenges to the admissibility of friction ridge evidence in courts of law. This study investigates the tendency of fingerprint similarity scores and recognition accuracy with respect to covariates characterizing properties of fingerprint impressions and demographics of subjects, including time interval between two fingerprints being compared in regard to the persistence of fingerprints. A multilevel statistical analysis is conducted with a longitudinal dataset of fingerprint records from 15,597 subjects. Human identification by fingerprints is based on the fundamental premise that ridge patterns from distinct fingers are different (uniqueness) and a fingerprint pattern does not change over time (persistence). Although the uniqueness of fingerprints has been investigated by developing statistical models to estimate the probability of error in comparing two random samples of fingerprints, the persistence of fingerprints has remained a general belief based on only a few case studies. In this study, fingerprint match (similarity) scores are analyzed by multilevel statistical models with covariates such as time interval between two fingerprints in comparison, subject’s age, and fingerprint image quality. Longitudinal fingerprint records of 15,597 subjects are sampled from an operational fingerprint database such that each individual has at least five 10-print records over a minimum time span of 5 y. In regard to the persistence of fingerprints, the longitudinal analysis on a single (right index) finger demonstrates that (i) genuine match scores tend to significantly decrease when time interval between two fingerprints in comparison increases, whereas the change in impostor match scores is negligible; and (ii) fingerprint recognition accuracy at operational settings, nevertheless, tends to be stable as the time interval increases up to 12 y, the maximum time span in the dataset. However, the uncertainty of temporal stability of fingerprint recognition accuracy becomes substantially large if either of the two fingerprints being compared is of poor quality. The conclusions drawn from 10-finger fusion analysis coincide with the conclusions from single-finger analysis.}
-} 
+}
 
 @article{mcc,
   abstract = {In this paper, we introduce the Minutia Cylinder-Code (MCC): a novel representation based on 3D data structures (called cylinders), built from minutiae distances and angles. The cylinders can be created starting from a subset of the mandatory features (minutiae position and direction) defined by standards like ISO/IEC 19794-2 (2005). Thanks to the cylinder invariance, fixed-length, and bit-oriented coding, some simple but very effective metrics can be defined to compute local similarities and to consolidate them into a global score. Extensive experiments over FVC2006 databases prove the superiority of MCC with respect to three well-known techniques and demonstrate the feasibility of obtaining a very effective (and interoperable) fingerprint recognition implementation for light architectures. © 2010 IEEE.},
@@ -270,32 +200,11 @@
   year      = {1997}
 }
 
-@inproceedings{Poh2009,
-  author    = {Poh, N. and Merati, A. and Kittler, J.},
-  title     = {Adaptive client-impostor centric score normalization: A case study in fingerprint verification},
-  booktitle = {IEEE 3rd International Conference on Biometrics: Theory, Applications, and Systems},
-  year      = {2009},
-  pages     = {1-7},
-  doi       = {10.1109/BTAS.2009.5339033},
-  publisher = {IEEE}
-}
-
 @misc{Precise2014,
   author = {{Precise Biometrics}},
   title  = {Understanding Biometric Performance Evaluation},
   year   = {2014},
   url    = {http://precisebiometrics.com/wp-content/uploads/2014/11/White-Paper-Understanding-Biometric-Performance-Evaluation.pdf}
-}
-
-@article{Roy2022systematic,
-  author  = {Roy, Soumen and Pradhan, Jitesh and Kumar, Abhinav and Adhikary, Dibya Ranjan Das and Roy, Utpal and Sinha, Devadatta and Pal, Rajat Kumar},
-  journal = {IEEE Access},
-  title   = {A Systematic Literature Review on Latest Keystroke Dynamics Based Models},
-  year    = {2022},
-  volume  = {10},
-  number  = {},
-  pages   = {92192-92236},
-  doi     = {10.1109/ACCESS.2022.3197756}
 }
 
 @inproceedings{Rohwedder2023,
@@ -308,26 +217,6 @@
   publisher = {Institute of Electrical and Electronics Engineers Inc.},
   title     = {Benchmarking Fixed-Length Fingerprint Representations Across Different Embedding Sizes and Sensor Types},
   year      = {2023}
-}
-
-@article{scikit-learn,
-  title   = {Scikit-learn: Machine Learning in {P}ython},
-  author  = {Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
-             and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
-             and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
-             Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
-  journal = {Journal of Machine Learning Research},
-  volume  = {12},
-  pages   = {2825--2830},
-  year    = {2011}
-}
-
-@book{seguranca_de_dados,
-  title     = {Segurança de Dados},
-  author    = {Routo Terada},
-  isbn      = {9788521215400},
-  year      = {2008},
-  publisher = {Blucher}
 }
 
 @article{spatial-transformer-networks,
@@ -351,18 +240,6 @@
   numpages  = {13},
   location  = {New Orleans, Louisiana},
   series    = {MobiCom '21}
-}
-
-@inproceedings{ZhuSeg,
-  author    = {Zhu, Yanming and Yin, Xuefei and Jia, Xiuping and Hu, Jiankun},
-  booktitle = {2017 IEEE Workshop on Information Forensics and Security (WIFS)},
-  title     = {Latent fingerprint segmentation based on convolutional neural networks},
-  year      = {2017},
-  volume    = {},
-  number    = {},
-  pages     = {1-6},
-  keywords  = {Image segmentation;Noise measurement;Correlation;Training;Feature extraction;Image quality},
-  doi       = {10.1109/WIFS.2017.8267655}
 }
 
 @article{flare,
